@@ -11,6 +11,7 @@ for _ in range(t):
     for i in range(k):
         if a[i] < b[i]:
             a[i] = b[i]
-    print(sum(a))
+            
+    # print(sum(a))
         
 
