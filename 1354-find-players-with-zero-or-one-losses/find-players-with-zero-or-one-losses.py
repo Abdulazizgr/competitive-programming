@@ -1,25 +1,19 @@
 class Solution:
     def findWinners(self, matches: List[List[int]]) -> List[List[int]]:
-        winner = {}
-        loser = {}
-        an=[]
-        an1=[]
+        win =defaultdict(int)
+        los = defaultdict(int)
+        ans1 =[]
+        ans0= []
         for i in range(len(matches)):
-            if matches[i][0] in winner:
-                winner[matches[i][0]] += 1
-            else:
-                winner[matches[i][0]] = 1
-        for i in range(len(matches)):
-            if matches[i][1] in loser:
-                loser[matches[i][1]] += 1
-            else:
-                loser[matches[i][1]] = 1
-        for key in winner:
-            if key not in loser:
-                an.append(key)
-        for key, value in loser.items():
-            if value == 1:
-                an1.append(key)
-        an.sort()
-        an1.sort()
-        return [an,an1]
+            win[matches[i][0]] += 1
+            los[matches[i][1]] += 1
+        for i in win:
+            if i not in los:
+                ans0.append(i)
+        for k,v in los.items():
+            if v == 1:
+                ans1.append(k)
+        ans1.sort()
+        ans0.sort()
+        return [ans0,ans1]
+        
