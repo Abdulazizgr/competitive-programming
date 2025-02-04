@@ -1,5 +1,3 @@
-from collections import defaultdict
-
 class FrequencyTracker:
     def __init__(self):
         self.num_count = defaultdict(int)  
