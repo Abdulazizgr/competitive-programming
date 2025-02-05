@@ -1,13 +1,7 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        groups = {}
-        
-        for word in strs:
-            sorted_word = ''.join(sorted(word))
-            
-            if sorted_word in groups:
-                groups[sorted_word].append(word)
-            else:
-                groups[sorted_word] = [word]
-        
-        return list(groups.values())
+        anagrams = defaultdict(list)
+        for value in strs:
+            sorted_val = str(sorted(value))
+            anagrams[sorted_val].append(value)
+        return [val for val in anagrams.values()]
