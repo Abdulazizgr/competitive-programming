@@ -10,6 +10,8 @@ class Solution:
                     char[i] -= 1
                     if char[i] == 0:
                         del char[i]
+                else:
+                    break 
             if count == len(val):
                 res.append(count)
 
