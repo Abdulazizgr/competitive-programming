@@ -1,7 +1,13 @@
 class Solution:
     def restoreString(self, s: str, indices: List[int]) -> str:
-        shuffled = [''] * len(s)
-        for i, char in enumerate(s):
-            shuffled[indices[i]] = char
+        lst =[]
+        ans = ""
+        for i in range(len(s)):
+            lst.append((indices[i],s[i]))
+        lst.sort()
+        for val in lst:
+            ans += val[1]
+        return ans
 
-        return ''.join(shuffled)
+
+    
