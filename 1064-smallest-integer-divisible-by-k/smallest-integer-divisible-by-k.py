@@ -7,7 +7,7 @@ class Solution:
         for _ in range(k):
             if one_digit % k == 0:
                 return length
-            one_digit = (one_digit * 10 + 1) % k
+            one_digit = (one_digit * 10 + 1)
             length += 1
         
         return -1
