@@ -1,13 +1,12 @@
-
-
 class Solution:
     def frequencySort(self, s: str) -> str:
-        counter = Counter(s)
-        pq = [(-freq, char) for char, freq in counter.items()]
-        heapq.heapify(pq)
-        result = ''
-        while pq:
-            freq, char = heapq.heappop(pq)
-            result += char * -freq
-        return result
+        char_freq = Counter(s)
+        sorted_s = ""
 
+        sorted_chars = sorted(char_freq.items(), key=lambda x: x[1], reverse=True)
+
+        for char, freq in sorted_chars:
+            sorted_s += char * freq
+
+    
+        return sorted_s
