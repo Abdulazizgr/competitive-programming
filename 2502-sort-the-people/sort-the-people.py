@@ -1,16 +1,18 @@
 class Solution:
     def sortPeople(self, names: List[str], heights: List[int]) -> List[str]:
-        pep = list(zip(names,heights))
-    
-        n = len(pep)
-  
-
+        n = len(names)
         for i in range(n):
             for j in range(n - i - 1):
-                if pep[j][1] < pep[j + 1][1]:  
-                    pep[j], pep[j + 1] = pep[j + 1], pep[j]
-        
- 
-        return [name for name, _ in pep]
+                if heights[j] < heights[j + 1]:
+                    heights[j], heights[j + 1] = heights[j + 1], heights[j]
+                    names[j], names[j + 1] = names[j + 1], names[j]
+        return names
 
 
+
+        # values = []
+        # for val in range(len(names)):
+        #     values.append([names[val], heights[val]])
+        # values.sort(key=lambda x: x[1], reverse=True)
+
+        # return [name for name, height in values]
