@@ -1,16 +1,43 @@
 class Solution:
     def sortPeople(self, names: List[str], heights: List[int]) -> List[str]:
         n = len(names)
+        ans = []
+        map_pep = {}
+        max_num = max(heights) +1
+        freq = [0] *max_num
         for i in range(n):
-            idx = i
-            for j in range(i - 1, -1, -1):
-                if heights[j] < heights[idx]:
-                    heights[j], heights[idx] = heights[idx], heights[j]
-                    names[j], names[idx] = names[idx], names[j]
-                    idx = j
-                else:
-                    break
-        return names
+            map_pep[heights[i]] = names[i]
+        print(map_pep)
+        for val in heights:
+            freq[val] += 1
+        for val in range(len(freq)-1 ,-1,-1):
+            if freq[val] > 0:
+                ans.append(map_pep[val])
+        
+                
+     
+        
+
+
+        
+        return ans
+
+
+
+
+
+
+
+        # for i in range(n):
+        #     idx = i
+        #     for j in range(i - 1, -1, -1):
+        #         if heights[j] < heights[idx]:
+        #             heights[j], heights[idx] = heights[idx], heights[j]
+        #             names[j], names[idx] = names[idx], names[j]
+        #             idx = j
+        #         else:
+        #             break
+        # return names
 
 
 
