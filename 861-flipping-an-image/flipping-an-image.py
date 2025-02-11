@@ -1,9 +1,11 @@
 class Solution:
     def flipAndInvertImage(self, image: List[List[int]]) -> List[List[int]]:
-        ans = []
-        for i in range(len(image)):
-            num = image[i]
-            num = num[::-1]
-            num = [0 if i == 1 else 1 for i in num]
-            ans.append(num)
-        return ans
+        for row in image:
+            row.reverse()
+        for row in range(len(image)):
+            for col in range(len(image)):
+                if image[row][col] == 0:
+                     image[row][col] = 1
+                else:
+                     image[row][col] = 0
+        return image
