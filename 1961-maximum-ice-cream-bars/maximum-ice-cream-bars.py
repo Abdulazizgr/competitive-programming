@@ -1,17 +1,17 @@
 class Solution:
     def maxIceCream(self, costs: List[int], coins: int) -> int:
+        n = len(costs)
         costs.sort()
-        if coins < costs[0]:
-            return 0
-        sum = 0
-        count =0
-        print(costs)
-        for i in range(len(costs)):
-            sum += costs[i]
-            if sum <= coins:
-               
-                count += 1
-                print(sum)
-            else:
+        count = 0
+        price_sum = 0
+        for price in costs:
+            if price > coins:
                 break
+            else:
+                price_sum += price
+                if price_sum <= coins:
+                    count += 1
+                else:
+                    break
         return count
+
