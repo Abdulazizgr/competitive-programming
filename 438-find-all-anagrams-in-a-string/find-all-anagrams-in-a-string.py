@@ -1,44 +1,22 @@
 class Solution:
     def findAnagrams(self, s: str, p: str) -> List[int]:
-        l = len(p)
-        if l > len(s):
+        if len(p) > len(s):
             return []
-        ans = []
-        cp = {}
+        
+        freq_p = Counter(p)
+        freq_s = Counter(s[:len(p) - 1])  
+        result = []
+        
         left = 0
-        right = 0
-        sp = {}
-        for ch in p:
-            if ch in sp:
-                sp[ch] += 1
-            else:
-                sp[ch] = 1
-        
-
-        
-        while right < len(p):
-            if s[right] in cp:
-                cp[s[right]] += 1
-            else:
-                cp[s[right]] = 1
-            right += 1
-        
-        if sp == cp:
-            ans.append(left)
-        
-        while right < len(s):
-            cp[s[left]] -= 1
-            if cp[s[left]] == 0:
-                del cp[s[left]]
-            if s[right] in cp:
-                cp[s[right]] += 1
-            else:
-                cp[s[right]] = 1
+        for right in range(len(p) - 1, len(s)):
+            freq_s[s[right]] += 1  
             
-            if sp == cp:
-                ans.append(left + 1)
+            if freq_s == freq_p:  
+                result.append(left)
             
-            left += 1
-            right += 1
+            freq_s[s[left]] -= 1  
+            if freq_s[s[left]] == 0:
+                del freq_s[s[left]]
+            left += 1  
         
-        return ans
+        return result
