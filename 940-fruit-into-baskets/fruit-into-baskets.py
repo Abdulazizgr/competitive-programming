@@ -11,5 +11,5 @@ class Solution:
                 if freq[fruits[left]] == 0:
                     del freq[fruits[left]]
                 left += 1
-            max_sum = max(max_sum ,sum(freq.values()))
+            max_sum = max(max_sum ,right - left + 1)
         return max_sum
