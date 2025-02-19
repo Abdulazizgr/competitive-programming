@@ -1,32 +1,15 @@
 class Solution:
     def numSubarraysWithSum(self, nums: List[int], goal: int) -> int:
-        mp = defaultdict(int)
-        mp[0] = 1
-        sm = 0
-        ans = 0
-        for i in range(len(nums)):
-            sm += nums[i]
+        result = 0
+        prefix_count = defaultdict(int)
+        prefix_count[0] = 1
+        prefix_sum = 0
 
-            if sm-goal in mp:
-                ans += mp[sm-goal]
-            # print(mp)
+        for num in nums:
+            prefix_sum += num
+            if prefix_sum - goal in prefix_count:
+                result += prefix_count[prefix_sum-goal]
+            prefix_count[prefix_sum] += 1
+        return result
             
-            mp[sm] += 1
-        
-        return ans
-
-        # def compute(k):
-        #     left = right = 0
-        #     ans = 0
-        #     sm = 0
-        #     while right < len(nums):
-        #         sm += nums[right]
-        #         while sm > k and left <= right:
-        #             sm -= nums[left]
-        #             left += 1
-
-        #         ans += (right - left + 1)
-        #         right += 1
-        #     return ans
-        
-        # return compute(goal) - compute(goal-1)
+            
