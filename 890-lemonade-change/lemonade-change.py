@@ -1,16 +1,13 @@
 class Solution:
     def lemonadeChange(self, bills: List[int]) -> bool:
         count = defaultdict(int)
-        tot = 0
 
-        for val in bills:
-            
+        for val in bills: 
             if val == 5:
                 count [val] += 1
             elif val == 10:
                 count[val] += 1
                 if count[5] >= 1:
-
                     count[5] -= 1
                     if count[5] == 0:
                         del count[5]
@@ -18,7 +15,6 @@ class Solution:
                     return False
             else:
                 if count[10] >= 1 and count[5] >= 1 :
-                    count[20] += 1
                     count[10] -= 1
                     if count[10] == 0:
                         del count[10]
@@ -26,7 +22,6 @@ class Solution:
                     if count[5] == 0:
                         del count[5]
                 elif count[5] >= 3:
-                     count[20] += 1
                      count[5] -= 3
                      if count[5] == 0:
                         del count[5]
