@@ -1,13 +1,17 @@
 class Solution:
     def getRow(self, rowIndex: int) -> List[int]:
-        dp = [[1]]  
-
-        for i in range(0, rowIndex):  
-            curr = [1]  
-            for j in range(1, len(dp[-1])): 
-                curr.append(dp[-1][j-1] + dp[-1][j])  
-            curr.append(1) 
-            dp.append(curr)  
+        
+        def generate_row ( row):
+            if row == 0:
+                return [1]
+            if row == 1:
+                return [1,1]
+      
+            previous_row = generate_row(row - 1)
+            current_row = [1]
+            for idx in range(len(previous_row)-1):
+                current_row.append(previous_row[idx] + previous_row[idx+1])
+            current_row.append(1)
+            return current_row
+        return generate_row(rowIndex)
             
-
-        return dp[-1]
