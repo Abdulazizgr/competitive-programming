@@ -1,5 +1,14 @@
 class Solution:
     def findDuplicates(self, nums: List[int]) -> List[int]:
-        cnt = Counter(nums)
-        return [key  for key,value in cnt.items() if value == 2]
-        
+        pointer = 0
+        while pointer < len(nums):
+            idx = nums[pointer] - 1
+            if nums[pointer] != nums[idx]:
+                nums[pointer], nums[idx] = nums[idx], nums[pointer]
+            else:
+                pointer += 1
+        ans = []
+        for idx in range(len(nums)):
+            if nums[idx] - 1 != idx:
+                ans.append(nums[idx])
+        return ans
