@@ -1,14 +1,18 @@
 class Solution:
     def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        nums1.sort()
+        nums2.sort()
+        left = right = 0
         ans = []
-        if len(nums1) > len(nums2):
-            for i in range(len(nums2)):
-                if nums2[i] in nums1:
-                    nums1.remove(nums2[i])
-                    ans.append(nums2[i])
-        else:
-            for i in range(len(nums1)):
-                if nums1[i] in nums2:
-                    nums2.remove(nums1[i])
-                    ans.append(nums1[i])
+        
+        while left < len(nums1) and right < len(nums2):
+            if nums1[left] == nums2[right]:
+                ans.append(nums1[left])
+                left += 1
+                right += 1
+            elif nums1[left] < nums2[right]:
+                left += 1
+            else:
+                right += 1
+        
         return ans
